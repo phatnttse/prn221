@@ -15,6 +15,8 @@ namespace BusinessObjects.Entities
         [Required]
         public string Name { get; set; }
 
+        public int Views { get; set; }
+
         [Required]
         [StringLength(1000)]
         public string Description { get; set; }
@@ -22,8 +24,6 @@ namespace BusinessObjects.Entities
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
-
-        public string EventType { get; set; }
 
         [Required]
         public int StockQuantity { get; set; }
@@ -35,12 +35,9 @@ namespace BusinessObjects.Entities
         [StringLength(1000)]
         public string ImageUrl { get; set; }
 
+        [Required]
         [EnumDataType(typeof(FlowerListingStatus))]
         public FlowerListingStatus Status { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
 
         public bool IsDeleted { get; set; }
 

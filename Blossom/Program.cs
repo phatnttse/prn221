@@ -31,10 +31,19 @@ namespace Blossom
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Configure Identity options
+            // Configure Identity options and password complexity here
             builder.Services.Configure<IdentityOptions>(options =>
             {
+                // User settings
                 options.User.RequireUniqueEmail = true;
+
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+
+
             });
 
             builder.Services.AddScoped<IAuthService, AuthService>();

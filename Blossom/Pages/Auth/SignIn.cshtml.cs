@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Interfaces;
@@ -20,6 +21,15 @@ namespace Blossom.Pages.Auth
         public string Password { get; set; }
 
         public string ErrorMessage { get; private set; }
+
+        public IActionResult OnGetAsync()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Index"); // Replace with the path to your home page
+            }
+            return Page();
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {

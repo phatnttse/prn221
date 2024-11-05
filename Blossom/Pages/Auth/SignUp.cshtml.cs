@@ -1,11 +1,11 @@
 using BusinessObjects.Entities.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Interfaces;
 
 namespace Blossom.Pages.Auth
 {
-
     public class SignUpModel : PageModel
     {
         private readonly IAuthService _authService;
@@ -26,8 +26,13 @@ namespace Blossom.Pages.Auth
         public Gender? Gender { get; set; }
         public string ErrorMessage { get; private set; }
 
-        public void OnGetAsync()
+        public IActionResult OnGetAsync()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Index"); // Replace with the path to your home page
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()

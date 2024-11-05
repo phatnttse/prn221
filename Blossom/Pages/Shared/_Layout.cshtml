@@ -80,31 +80,88 @@
                                data-bs-toggle="dropdown"
                                aria-expanded="false">
 
+                                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                {
                                     <svg width="24" height="24">
                                         <use xlink:href="#user"></use>
                                     </svg>
-                                    
+                                }
+                                else {
+                                    <svg width="24" height="24">
+                                        <use xlink:href="#user"></use>
+                                    </svg>
+                                }
+
                             </a>
                             <ul class="dropdown-menu border-0 p-3 rounded-0 shadow"
                                 aria-labelledby="users">
-                                <li>
-                                    <div class="dropdown-item d-flex align-items-center">
-                                        <span class="material-icons me-2">
-                                            person
-                                        </span><a class="text-decoration-none nav-link" asp-page="/auth/signin">
-                                           SignIn
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="dropdown-item d-flex align-items-center">
-                                        <span class="material-icons me-2">
-                                            app_registration
-                                        </span><a class="text-decoration-none nav-link" asp-page="/auth/signup">
-                                           SignUp
-                                        </a>
-                                    </div>
-                                </li>   
+                                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <div routerLink="/profile"
+                                             class="dropdown-item d-flex align-items-center header-menu-item">
+                                            <span class="material-icons me-2">
+                                                account_circle
+                                            </span>
+
+                                    <a class="text-decoration-none">
+                                                @User.Identity.Name
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div routerLink="/wallet"
+                                             class="dropdown-item d-flex align-items-center header-menu-item">
+                                            <span class="material-icons me-2">
+                                                wallet</span>
+
+                                    <a class="text-decoration-none">
+                                                View Wallet
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div routerLink="/order-history"
+                                             class="dropdown-item d-flex align-items-center header-menu-item">
+                                            <span class="material-icons me-2">
+                                                local_shipping
+                                            </span>
+
+                                    <a class="text-decoration-none">
+                                                Order History
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div onClick="btnLogOut()"
+                                             class="dropdown-item d-flex align-items-center header-menu-item">
+                                            <span class="material-icons me-2">logout</span><a class="text-decoration-none" asp-page="/auth/logout">
+                                                Logout
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <div class="dropdown-item d-flex align-items-center">
+                                            <span class="material-icons me-2">
+                                                person
+                                            </span><a class="text-decoration-none nav-link" asp-page="/auth/signin">
+                                                SignIn
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-item d-flex align-items-center">
+                                            <span class="material-icons me-2">
+                                                app_registration
+                                            </span><a class="text-decoration-none nav-link" asp-page="/auth/signup">
+                                                SignUp
+                                            </a>
+                                        </div>
+                                    </li>
+                                } 
                             </ul>
                         </li>
                         <li>

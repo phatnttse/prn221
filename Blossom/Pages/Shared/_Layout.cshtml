@@ -141,6 +141,7 @@
         </div>
     </header>
 
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -319,59 +320,6 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <div class="offcanvas offcanvas-end"
-         data-bs-scroll="true"
-         tabindex="-1"
-         id="offcanvasCart">
-        <div class="offcanvas-header justify-content-center">
-            <button type="button"
-                    class="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-dark">Giỏ hàng của bạn</span>
-                    <span class="badge bg-secondary rounded-pill">3</span>
-                </h4>
-                <ul class="list-group mb-5">
-
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Hoa hồng</h6>
-                                <small class="text-body-secondary">x3</small>
-                            </div>
-                            <span class="text-body-secondary">100.000đ</span>
-                        </li>
-                    
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Tổng tiền</span>
-                        <strong class="text-danger">Tổng tiền</strong>
-                    </li>
-                </ul>
-                <button mat-raised-button
-                        href="/cart"
-                        class="w-100 btn btn-primary btn-lg mb-3"
-                        type="button"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                        color="primary">
-                    Xem giỏ hàng
-                </button>
-
-                <button mat-raised-button
-                        href="/order"
-                        class="w-100 btn btn-primary btn-lg"
-                        type="button"
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                        color="accent">
-                    Tiếp tục đặt hàng
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Offcanvas Tìm Kiếm -->
     <div class="offcanvas offcanvas-top"

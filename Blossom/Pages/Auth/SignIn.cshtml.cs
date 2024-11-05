@@ -1,15 +1,17 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using BusinessObjects.Entities;
+using Services.Interfaces;
 
 namespace Blossom.Pages.Auth
 {
     public class SignInModel : PageModel
     {
-        private readonly SignInManager<Account> _signInManager;
-        private readonly UserManager<Account> _userManager;
+        private readonly IAuthService _authService;
+
+        public SignInModel(IAuthService authService)
+        {
+            _authService = authService;
+        }
 
         [BindProperty]
         public string Email { get; set; }
@@ -19,36 +21,25 @@ namespace Blossom.Pages.Auth
 
         public string ErrorMessage { get; private set; }
 
-        public SignInModel(SignInManager<Account> signInManager, UserManager<Account> userManager)
-        {
-            _signInManager = signInManager;
-            _userManager = userManager;
-        }
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+            if (!ModelState.IsValid)
             {
-                ErrorMessage = "Email and password cannot be empty.";
+                ErrorMessage = "Invalid data.";
                 return Page();
             }
 
-            Account user = await _userManager.FindByNameAsync(Email) ?? await _userManager.FindByEmailAsync(Email);
-            if (user == null) 
-            {
-                ErrorMessage = "Invalid login attempt or account is disabled.";
-                return Page();
-            }
+            var response = await _authService.SignInAsync(Email, Password);
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, Password, lockoutOnFailure: true);
-            if (result.Succeeded)
+            if (response.Success)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToPage("/Index"); 
+                TempData["LoginSuccessMessage"] = response.Message;
+                return RedirectToPage("/Index");
             }
             else
             {
-                ErrorMessage = result.IsLockedOut ? "Account is locked." : "Invalid login attempt.";
+                // Display error message from response
+                ErrorMessage = response.Message;
                 return Page();
             }
         }

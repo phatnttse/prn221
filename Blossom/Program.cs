@@ -3,6 +3,8 @@ using BusinessObjects.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Services.Interfaces;
+using Services;
 
 namespace Blossom
 {
@@ -34,6 +36,8 @@ namespace Blossom
             {
                 options.User.RequireUniqueEmail = true;
             });
+
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             // Add cors
             builder.Services.AddCors();

@@ -1,19 +1,14 @@
-﻿using DAO.Interfaces;
-using DAO;
-using Repositories.Interfaces;
+﻿using DAO;
 using System.Linq.Expressions;
 
 namespace Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : GenericDAO<T> where T : class
     {
-        private readonly IGenericDAO<T> _dao;
-        private readonly ApplicationDbContext _context;
+        private readonly GenericDAO<T> _dao;
 
-        public GenericRepository(IGenericDAO<T> dao, ApplicationDbContext context)
+        public GenericRepository(ApplicationDbContext context) : base(context)
         {
-            _dao = dao;
-            _context = context;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -51,7 +46,7 @@ namespace Repositories
 
         public async Task SaveChangesAsync()
         {
-            await _context.SaveChangesAsync();  
+            await _dao.SaveChangesAsync();  
         }
     }
 

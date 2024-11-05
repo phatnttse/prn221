@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using DAO;
+using System.Linq.Expressions;
 
 namespace Repositories.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T, V> where T : class where V : GenericDAO<T>
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(string id);

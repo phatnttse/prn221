@@ -3,12 +3,13 @@ using System.Linq.Expressions;
 
 namespace Repositories
 {
-    public class GenericRepository<T> : GenericDAO<T> where T : class
+    public class GenericRepository<T, V> where T : class where V : GenericDAO<T>
     {
-        private readonly GenericDAO<T> _dao;
+        protected readonly V _dao;
 
-        public GenericRepository(ApplicationDbContext context) : base(context)
+        public GenericRepository(V dao)
         {
+            _dao = dao;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()

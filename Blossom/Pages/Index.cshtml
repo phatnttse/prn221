@@ -4,9 +4,11 @@
     ViewData["Title"] = "Home page";
 }
 
+@if(TempData["LoginSuccessMessage"] != null) {
 <script type="text/javascript">
     toastr.success('@TempData["LoginSuccessMessage"]');    
 </script>
+}
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

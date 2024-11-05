@@ -1,25 +1,21 @@
 ﻿using Services.Interfaces;
 using System.Security.Claims;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 using Microsoft.AspNetCore.Http;
 
 namespace Services
 {
-    public class UserIdAccessor(IHttpContextAccessor httpContextAccessor) : IUserIdAccessor
+    public class UserIdAccessor : IUserIdAccessor
     {
-        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public string? GetCurrentUserId() => _httpContextAccessor.HttpContext?.User.FindFirstValue(Claims.Subject);
-    }
+        public UserIdAccessor(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
-    public class SystemUserIdAccessor : IUserIdAccessor
-    {
-        private readonly string? id;
-
-        private SystemUserIdAccessor(string? id) => this.id = id;
-
-        public string? GetCurrentUserId() => id;
-
-        public static SystemUserIdAccessor GetNewAccessor(string? id = "SYSTEM") => new(id);
+        public string? GetCurrentUserId()
+        {
+            return _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
     }
 }

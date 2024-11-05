@@ -1,10 +1,6 @@
 ﻿using BusinessObjects.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DAO
 {
@@ -18,6 +14,7 @@ namespace DAO
         {
             return await _context.FlowerListings
                 .Include(f => f.Seller)
+                .Include(f => f.Category)
                 .Where(f => f.SellerId == sellerId && !f.IsDeleted)
                 .ToListAsync();
         }

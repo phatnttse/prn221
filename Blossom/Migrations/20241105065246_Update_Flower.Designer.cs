@@ -4,6 +4,7 @@ using DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blossom.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241105065246_Update_Flower")]
+    partial class Update_Flower
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,7 +158,7 @@ namespace Blossom.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("BusinessObjects.Entities.FlowerList", b =>
+            modelBuilder.Entity("BusinessObjects.Entities.FlowerListing", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -466,7 +469,7 @@ namespace Blossom.Migrations
 
             modelBuilder.Entity("BusinessObjects.Entities.CartItem", b =>
                 {
-                    b.HasOne("BusinessObjects.Entities.FlowerList", "FlowerList")
+                    b.HasOne("BusinessObjects.Entities.FlowerListing", "FlowerListing")
                         .WithMany()
                         .HasForeignKey("FlowerListingId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -478,12 +481,12 @@ namespace Blossom.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("FlowerList");
+                    b.Navigation("FlowerListing");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BusinessObjects.Entities.FlowerList", b =>
+            modelBuilder.Entity("BusinessObjects.Entities.FlowerListing", b =>
                 {
                     b.HasOne("BusinessObjects.Entities.Category", "Category")
                         .WithMany()
@@ -515,7 +518,7 @@ namespace Blossom.Migrations
 
             modelBuilder.Entity("BusinessObjects.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("BusinessObjects.Entities.FlowerList", "FlowerList")
+                    b.HasOne("BusinessObjects.Entities.FlowerListing", "FlowerListing")
                         .WithMany()
                         .HasForeignKey("FlowerListingId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -537,7 +540,7 @@ namespace Blossom.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("FlowerList");
+                    b.Navigation("FlowerListing");
 
                     b.Navigation("Order");
 

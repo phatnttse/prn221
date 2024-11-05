@@ -1,0 +1,72 @@
+﻿@page
+@model Blossom.Pages.SellerChannel.CreateModel
+@using BusinessObjects.Entities
+@{
+    ViewData["Title"] = "Thêm sản phẩm mới";
+}
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+        var successMessage = '@TempData["CreateSuccessMessage"]';
+        var errorMessage = '@Model.ErrorMessage';
+
+            if (successMessage) {
+                toastr.success(successMessage);
+            }
+
+            if (errorMessage) {
+                toastr.error(errorMessage);
+            }
+        });
+</script>
+
+<h2 class="my-5">Thêm sản phẩm mới</h2>
+
+<form method="post">
+    <div>
+        <label for="Name">Tên sản phẩm</label>
+        <input asp-for="Name" id="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="Description">Mô tả</label>
+        <textarea asp-for="Description" id="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="Price">Giá</label>
+        <input asp-for="Price" id="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="StockQuantity">Số lượng trong kho</label>
+        <input asp-for="StockQuantity" id="StockQuantity" class="form-control" />
+        <span asp-validation-for="StockQuantity" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="Address">Địa chỉ</label>
+        <input asp-for="Address" id="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="ImageUrl">URL hình ảnh</label>
+        <input asp-for="ImageUrl" id="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label for="CategoryId">Danh mục</label>
+        <select asp-for="CategoryId" class="form-control">
+            <option value="A3E923C1-F46F-49E9-B3BF-B6E342DC4F57">Hoa tiệc cưới</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+</form>

@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Services.Interfaces;
 using Services;
+using Repositories.Interfaces;
+using Repositories;
 
 namespace Blossom
 {
@@ -28,8 +30,7 @@ namespace Blossom
 
             // Add Identity
             builder.Services.AddIdentity<Account, Role>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Configure Identity options and password complexity here
             builder.Services.Configure<IdentityOptions>(options =>
@@ -43,10 +44,16 @@ namespace Blossom
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
 
-
             });
 
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IFlowerService, FlowerService>();
+            builder.Services.AddScoped<IFlowerRepository, FlowerRepository>();
+            builder.Services.AddScoped<FlowerDAO>();
+            builder.Services.AddScoped<IUserIdAccessor, UserIdAccessor>();
+
+            builder.Services.AddHttpContextAccessor();
+
 
             // Add cors
             builder.Services.AddCors();

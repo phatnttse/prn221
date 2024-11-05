@@ -3,15 +3,13 @@ using BusinessObjects.Entities;
 
 namespace DAO
 {
-    public class AccountDAO
+    public class AccountDAO : GenericDAO<Account>
     {
         private readonly ApplicationDbContext _context;
-
-        public AccountDAO(ApplicationDbContext context)
+        public AccountDAO(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
-
+    
         public async Task<Account?> GetUserByIdAsync(string userId)
         {
             return await _context.Users.FindAsync(userId);

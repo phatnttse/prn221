@@ -1,10 +1,9 @@
-﻿using DAO.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace DAO
 {
-    public class GenericDAO<T> : IGenericDAO<T> where T : class
+    public class GenericDAO<T> where T : class
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _dbSet;

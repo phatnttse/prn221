@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    internal class IAuthService
+    public class IAuthService
     {
+
     }
 }

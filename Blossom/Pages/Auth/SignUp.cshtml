@@ -1,7 +1,24 @@
 ﻿@page
 @model Blossom.Pages.Auth.SignUpModel
+@using BusinessObjects.Entities.Enums
 @{
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var successMessage = '@TempData["SignUpSuccessMessage"]';
+        var errorMessage = '@Model.ErrorMessage';
+
+        if (successMessage) {
+            toastr.success(successMessage);
+        }
+
+        if (errorMessage) {
+            toastr.error(errorMessage);
+        }
+    });
+</script>
+
 <div class="content" style="padding-top: 7rem;padding-bottom: 3rem">
     <div class="container">
         <div class="row">
@@ -13,12 +30,12 @@
                     <div class="col-md-9">
                         <div class="mb-4">
                             <h3>
-                                Sign In
+                                Sign Up
                                 <strong class="primary-color">PRN221</strong>
                             </h3>
                             <p class="my-3">
-                                Don't have an account?
-                                <a asp-page="/auth/signup" class="primary-color" style="text-decoration: underline">Sign Up Now</a>
+                                Already have an account?
+                                <a asp-page="/auth/signin" class="primary-color" style="text-decoration: underline">Login Now</a>
                             </p>
                         </div>
                         <form method="post">
@@ -32,15 +49,28 @@
                                 <input type="password" asp-for="Password" class="form-control" required />
                             </div>
 
-                            <div class="d-flex mb-3 align-items-center justify-content-end">
-                                <span class="ml-auto">
-                                    <a href="/forgot-password" class="forgot-pass">Forgot Password?</a>
-                                </span>
+                            <div class="w-100 mb-3">
+                                <label style="font-size: 14px">Confirm Password</label>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" required />
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100 p-20">Login</button>
+                            <div class="w-100 mb-3">
+                                <label style="font-size: 14px">Gender</label>
+                                <select asp-for="Gender" class="form-control" required>
+                                    <option value="">Select Gender</option>
+                                    @foreach (var gender in Enum.GetValues(typeof(Gender)).Cast<Gender>())
+                                    {
+                                        if (gender != Gender.NONE) 
+                                        {
+                                            <option value="@gender">@gender</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
 
-                            <span class="d-flex text-left my-4 text-muted justify-content-center">Or Sign In With</span>
+                            <button type="submit" class="btn btn-primary w-100 p-20">Sign Up</button>
+
+                            <span class="d-flex text-left my-4 text-muted justify-content-center">Or Sign Up With</span>
 
                             <div class="social-login">
                                 <div class="d-flex w-100">
@@ -58,7 +88,7 @@
                                             <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
                                             <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
                                         </svg>
-                                        <span class="fs-14 text-gray-700">Login with Google</span>
+                                        <span class="fs-14 text-gray-700">Sign Up with Google</span>
                                     </button>
                                 </div>
                             </div>

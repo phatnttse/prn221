@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    
 </head>
 <body>
     <header>
@@ -90,7 +91,7 @@
                                     <div class="dropdown-item d-flex align-items-center">
                                         <span class="material-icons me-2">
                                             person
-                                        </span><a class="text-decoration-none nav-link" href="/signin">
+                                        </span><a class="text-decoration-none nav-link" asp-page="/auth/signin">
                                            SignIn
                                         </a>
                                     </div>
@@ -99,7 +100,7 @@
                                     <div class="dropdown-item d-flex align-items-center">
                                         <span class="material-icons me-2">
                                             app_registration
-                                        </span><a class="text-decoration-none nav-link" href="/signup">
+                                        </span><a class="text-decoration-none nav-link" asp-page="/auth/signup">
                                            SignUp
                                         </a>
                                     </div>

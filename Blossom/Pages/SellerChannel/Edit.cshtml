@@ -1,0 +1,57 @@
+﻿@page "{id}"
+@model Blossom.Pages.SellerChannel.EditModel
+@{
+    ViewData["Title"] = "Edit Flower Listing";
+}
+
+<h2 class="my-5">Edit Flower Listing</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="FlowerListing.Name" class="form-label"></label>
+        <input asp-for="FlowerListing.Name" class="form-control" />
+        <span asp-validation-for="FlowerListing.Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.Description" class="form-label"></label>
+        <textarea asp-for="FlowerListing.Description" class="form-control"></textarea>
+        <span asp-validation-for="FlowerListing.Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.Price" class="form-label"></label>
+        <input asp-for="FlowerListing.Price" class="form-control" />
+        <span asp-validation-for="FlowerListing.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.StockQuantity" class="form-label"></label>
+        <input asp-for="FlowerListing.StockQuantity" class="form-control" />
+        <span asp-validation-for="FlowerListing.StockQuantity" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.Address" class="form-label"></label>
+        <input asp-for="FlowerListing.Address" class="form-control" />
+        <span asp-validation-for="FlowerListing.Address" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.ImageUrl" class="form-label"></label>
+        <input asp-for="FlowerListing.ImageUrl" class="form-control" />
+        <span asp-validation-for="FlowerListing.ImageUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FlowerListing.CategoryId" class="form-label"></label>
+        <input asp-for="FlowerListing.CategoryId" class="form-control" />
+        <span asp-validation-for="FlowerListing.CategoryId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label>Status:</label>
+        <p class="form-control-plaintext">@Model.FlowerListing.Status</p>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-page="/SellerChannel/Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

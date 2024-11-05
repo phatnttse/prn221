@@ -163,7 +163,7 @@
                                 <div class="item-cate"
                                      (click)="goToProductListPageByCategory(category.id)">
                                     <a href="javascript:;"
-                                       [title]="category.name"
+                                       title="@category.Name"
                                        class="opaci_href"></a>
                                     <div class="icon_cate">
                                         <img width="100"
@@ -173,7 +173,7 @@
                                              [alt]="category.name"
                                              data-was-processed="true" />
                                     </div>
-                                    <h3>{{ category.name }}</h3>
+                                    <h3>@category.Name</h3>
                                     <!-- <span> {{ category.children.length }} danh mục</span> -->
                                 </div>
                             </div>
@@ -212,8 +212,8 @@
                                     <a href="javascript:;"
                                        title="Product Title"
                                        (click)="viewFlowerDetails(flower.id)">
-                                        <img [src]="flower.images[0].url"
-                                             [alt]="flower.name"
+                                        <img src="@flower.ImageUrl"
+                                             alt="@flower.Name"
                                              class="tab-image w-100" />
                                     </a>
                                 </figure>
@@ -221,10 +221,10 @@
                                     <a href="javascript:;"
                                        class="product-name"
                                        (click)="viewFlowerDetails(flower.id)">
-                                        <h3 class="fs-5 fw-bold">{{ flower.name }}</h3>
+                                        <h3 class="fs-5 fw-bold">@flower.Name</h3>
                                     </a>
                                     <div class="product-description">
-                                        <p class="m-0 p-0">{{ flower.description | truncate : 50 }}</p>
+                                        <p class="m-0 p-0">@flower.Description</p>
                                     </div>
                                     <div>
                                         <span class="badge bg-secondary mx-1">Primary</span>
@@ -233,7 +233,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center align-items-center gap-2">
                                         <!-- <del>{{ flower.price | number : "1.0" }}₫</del> -->
-                                        <span class="text-dark fs-5 fw-semibold">{{ flower.price | number : "1.0" }}₫</span>
+                                        <span class="text-dark fs-5 fw-semibold">@flower.Price₫</span>
                                     </div>
                                     <div class="button-area p-3 pt-0">
                                         <div class="row g-1 mt-2">
@@ -245,7 +245,7 @@
                                                         <svg width="32" height="32">
                                                             <use xlink:href="#cart"></use>
                                                         </svg>
-                                                        {{ "AddToCart" | translate }}
+                                                        Add to Cart
                                                     </div>
                                                 </a>
                                             </div>

@@ -10,10 +10,8 @@ namespace DAO
 {
     public class FlowerDAO : GenericDAO<FlowerListing>
     {
-        private readonly ApplicationDbContext _context;
         public FlowerDAO(ApplicationDbContext context): base(context)
         {
-            _context = context;
         }
         // Get flowers by SellerId asynchronously
         public async Task<IEnumerable<FlowerListing>> GetFlowersBySellerIdAsync(string sellerId)

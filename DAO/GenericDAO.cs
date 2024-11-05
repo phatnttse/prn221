@@ -5,8 +5,8 @@ namespace DAO
 {
     public class GenericDAO<T> where T : class
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly ApplicationDbContext _context;
+        internal readonly DbSet<T> _dbSet;
 
         public GenericDAO(ApplicationDbContext context)
         {
@@ -49,6 +49,11 @@ namespace DAO
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> CountAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.CountAsync(filter);
         }
     }
 }

@@ -5,7 +5,6 @@ namespace DAO
 {
     public class AccountDAO : GenericDAO<Account>
     {
-        private readonly ApplicationDbContext _context;
         public AccountDAO(ApplicationDbContext context) : base(context)
         {
         }

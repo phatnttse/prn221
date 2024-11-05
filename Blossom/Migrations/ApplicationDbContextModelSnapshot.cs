@@ -155,7 +155,7 @@ namespace Blossom.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("BusinessObjects.Entities.FlowerListing", b =>
+            modelBuilder.Entity("BusinessObjects.Entities.FlowerList", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -678,7 +678,7 @@ namespace Blossom.Migrations
 
             modelBuilder.Entity("BusinessObjects.Entities.CartItem", b =>
                 {
-                    b.HasOne("BusinessObjects.Entities.FlowerListing", "FlowerListing")
+                    b.HasOne("BusinessObjects.Entities.FlowerList", "FlowerList")
                         .WithMany()
                         .HasForeignKey("FlowerListingId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -690,12 +690,12 @@ namespace Blossom.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("FlowerListing");
+                    b.Navigation("FlowerList");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BusinessObjects.Entities.FlowerListing", b =>
+            modelBuilder.Entity("BusinessObjects.Entities.FlowerList", b =>
                 {
                     b.HasOne("BusinessObjects.Entities.Category", "Category")
                         .WithMany()
@@ -727,7 +727,7 @@ namespace Blossom.Migrations
 
             modelBuilder.Entity("BusinessObjects.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("BusinessObjects.Entities.FlowerListing", "FlowerListing")
+                    b.HasOne("BusinessObjects.Entities.FlowerList", "FlowerList")
                         .WithMany()
                         .HasForeignKey("FlowerListingId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -749,7 +749,7 @@ namespace Blossom.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("FlowerListing");
+                    b.Navigation("FlowerList");
 
                     b.Navigation("Order");
 

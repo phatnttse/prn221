@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Services.Interfaces;
 using Services;
+using Repositories.Interfaces;
+using Repositories;
 
 namespace Blossom
 {
@@ -47,6 +49,9 @@ namespace Blossom
             });
 
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<CategoryDAO, CategoryDAO>();
 
             // Add cors
             builder.Services.AddCors();

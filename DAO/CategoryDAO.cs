@@ -55,7 +55,13 @@ namespace DAO
         // Update an existing category asynchronously
         public async Task<bool> UpdateCategoryAsync(Category category)
         {
-            _context.Categories.Update(category);
+            Category existingCategory = await _context.Categories.FirstOrDefaultAsync(c => c.Id == category.Id);
+            if (existingCategory != null)
+            {
+                existingCategory.Name = category.Name;
+                existingCategory.ImageUrl = category.ImageUrl;
+            }
+            _context.Categories.Update(existingCategory);
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }

@@ -1,10 +1,7 @@
 ﻿using BusinessObjects.Entities;
-using DAO.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace DAO
 {

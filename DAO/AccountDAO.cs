@@ -3,11 +3,11 @@ using BusinessObjects.Entities;
 
 namespace DAO
 {
-    public class AccountDao
+    public class AccountDAO
     {
         private readonly ApplicationDbContext _context;
 
-        public AccountDao(ApplicationDbContext context)
+        public AccountDAO(ApplicationDbContext context)
         {
             _context = context;
         }

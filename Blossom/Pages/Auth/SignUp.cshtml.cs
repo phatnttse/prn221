@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Blossom.Pages.Account
+namespace Blossom.Pages.Auth
 {
-    public class LoginModel : PageModel
+    public class SignUpModel : PageModel
     {
         public void OnGet()
         {
